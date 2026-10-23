@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" role="img" aria-label="Ilustração de mãos unidas em volta de um coração">
+  <rect width="400" height="260" rx="16" fill="#fff4dc"/>
+  <circle cx="200" cy="140" r="90" fill="#ffd27a"/>
+  <g fill="none" stroke-linecap="round" stroke-width="22">
+    <path d="M110 200 Q120 120 175 95" stroke="#2f80c9"/>
+    <path d="M290 200 Q280 120 225 95" stroke="#2fa86b"/>
+    <path d="M140 225 Q200 250 260 225" stroke="#e8743b"/>
+  </g>
+  <path d="M200 175 C160 145 160 110 182 105 C193 103 200 112 200 120 C200 112 207 103 218 105 C240 110 240 145 200 175 Z" fill="#d93a4a"/>
+</svg>
