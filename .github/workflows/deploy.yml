@@ -1,0 +1,54 @@
+name: Build e Deploy (GitHub Pages)
+
+# Dispara em todo push na main — na prática, o fim de uma release do
+# GitFlow (merge de develop -> main) é o gatilho real de deploy.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # permite disparar manualmente pela aba Actions
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependências (sharp, para otimização de imagens)
+        run: npm install
+
+      - name: Build (bundle + minificação de CSS/JS/HTML)
+        run: npm run build
+
+      - name: Otimizar imagens (WebP + JPEG redimensionados)
+        run: npm run otimizar-imagens
+
+      - name: Preparar artefato do GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy no GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

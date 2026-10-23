@@ -1,0 +1,13 @@
+{
+  "name": "ong-maos-solidarias",
+  "version": "2.2.0",
+  "private": true,
+  "description": "SPA institucional da ONG Mãos Solidárias — HTML/CSS/JS puro.",
+  "scripts": {
+    "build": "node build.js",
+    "otimizar-imagens": "node otimizar-imagens.js imagens dist/imagens"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.0"
+  }
+}

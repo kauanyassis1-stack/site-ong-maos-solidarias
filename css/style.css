@@ -1,0 +1,949 @@
+/* =========================================================
+   DESIGN SYSTEM — ONG Mãos Solidárias
+   Variáveis customizadas: cores, tipografia, espaçamento e grid
+   ========================================================= */
+
+:root {
+
+    /* ----- 1. Cores — Primária (identidade institucional) ----- */
+    --cor-primaria-900: #1E3D34;   /* verde escuro — header, footer, títulos */
+    --cor-primaria-600: #2E5C4F;   /* verde médio — links, hover */
+    --cor-primaria-100: #E3ECE9;   /* verde bem claro — fundos de destaque/hover sutil */
+
+    /* ----- 2. Cores — Secundária (call-to-action / destaque) ----- */
+    --cor-secundaria-600: #C99A3B; /* dourado — sublinhados, hover de nav */
+    --cor-secundaria-300: #E3C078; /* dourado claro — apoio, ícones secundários */
+    /* --cor-secundaria-600 tem só 2.57:1 contra branco — insuficiente
+       para o anel de foco (WCAG 1.4.11 exige 3:1 em UI não-textual).
+       --cor-foco é um dourado escurecido específico para isso: 5.05:1. */
+    --cor-foco: #8A6A1F;
+
+    /* ----- 3. Cores — Neutras (texto, fundo, bordas) ----- */
+    --cor-neutra-000: #FFFFFF;     /* branco — só superfície de cartão/modal */
+    --cor-texto-inverso: #FFFFFF;  /* texto sobre fundo escuro (header, botões, toast) — fixa nos dois temas */
+    --cor-acento: #1E3D34;         /* títulos, legend, alerta-info, badge primária — some para claro no tema escuro */
+    --cor-texto-sobre-dourado: #1E3D34; /* só para a badge secundária, cujo fundo dourado não escurece — fixa */
+    --cor-neutra-100: #F7F5F0;     /* fundo geral da página */
+    --cor-neutra-300: #DFDACE;     /* divisores decorativos (não usar em bordas de componentes) */
+    --cor-neutra-500: #97948C;     /* bordas de componentes de interface — 3:1 mín. contra fundo claro (WCAG 1.4.11) */
+    --cor-neutra-600: #5B6259;     /* texto secundário (labels, legendas) */
+    --cor-neutra-900: #24291F;     /* texto principal */
+
+    /* ----- 4. Cores — Semânticas (feedback do formulário) ----- */
+    --cor-sucesso: #2E7D32;        /* validação positiva */
+    --cor-erro: #B3261E;           /* validação negativa */
+
+    /* ----- 5. Tipografia — famílias ----- */
+    --fonte-titulo: Georgia, 'Times New Roman', serif;
+    --fonte-corpo: -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+
+    /* ----- 6. Tipografia — escala modular (base 16px, razão ~1.3) ----- */
+    --fonte-tamanho-xs: 0.75rem;     /* 12px — legendas, rodapé */
+    --fonte-tamanho-sm: 0.875rem;    /* 14px — labels, textos auxiliares */
+    --fonte-tamanho-base: 1rem;      /* 16px — corpo de texto */
+    --fonte-tamanho-md: 1.25rem;     /* 20px — subtítulos (h3) */
+    --fonte-tamanho-lg: 1.75rem;     /* 28px — h2 */
+    --fonte-tamanho-xl: 2.5rem;      /* 40px — h1 */
+
+    --linha-altura-base: 1.6;
+    --linha-altura-titulo: 1.25;
+
+    /* ----- 7. Espaçamento modular (base 8px, escala geométrica) ----- */
+    --espaco-1: 0.25rem;   /* 4px  — ajustes finos */
+    --espaco-2: 0.5rem;    /* 8px  — espaçamento mínimo entre elementos internos */
+    --espaco-3: 1rem;      /* 16px — espaçamento padrão de componentes */
+    --espaco-4: 1.5rem;    /* 24px — espaçamento entre blocos pequenos */
+    --espaco-5: 2rem;      /* 32px — respiro interno de seções */
+    --espaco-6: 3rem;      /* 48px — separação entre seções */
+    --espaco-7: 4rem;      /* 64px — margens de página / grandes blocos */
+
+    /* ----- 8. Grid e breakpoints estritos ----- */
+    --grid-colunas: 12;
+    --grid-gap: var(--espaco-4);
+    --breakpoint-xs: 480px;   /* celular pequeno -> celular grande */
+    --breakpoint-sm: 600px;   /* celular -> tablet retrato */
+    --breakpoint-md: 900px;   /* tablet paisagem -> notebook */
+    --breakpoint-lg: 1200px;  /* desktop */
+    --breakpoint-xl: 1440px;  /* desktop panorâmico */
+
+    --raio-borda: 4px;
+}
+
+/* =========================================================
+   MODO DE ALTO CONTRASTE
+   Ativado via atributo data-tema="escuro" na <html>, controlado por
+   js/tema.js. Todas as combinações foram validadas com um script
+   Python que implementa a fórmula de luminância relativa da WCAG
+   (equivalente ao WebAIM Contrast Checker) — ver resposta da etapa.
+   ========================================================= */
+
+:root[data-tema="escuro"] {
+    --cor-primaria-900: #0B120F;
+    --cor-primaria-600: #12201B;
+    --cor-primaria-100: #1C2E27;
+
+    --cor-secundaria-600: #F0C674;
+    --cor-secundaria-300: #F5D897;
+    --cor-foco: #F0C674; /* contra fundos escuros, o dourado claro já tem contraste alto */
+
+    --cor-neutra-000: #1C2E27;
+    --cor-neutra-100: #12201B;
+    --cor-neutra-300: #3A4A43;
+    --cor-neutra-500: #6B7A72;
+    --cor-neutra-600: #C9D6CF;
+    --cor-neutra-900: #F5F5F0;
+
+    --cor-sucesso: #6FCF7A;
+    --cor-erro: #FF8A80;
+    --cor-acento: #8FD6BC;
+    /* --cor-texto-sobre-dourado NÃO é sobrescrita: a badge secundária
+       mantém um fundo dourado claro nos dois temas, então o texto
+       continua escuro nos dois — ver justificativa na resposta. */
+}
+
+:root[data-tema="escuro"] a {
+    color: #8FD6BC;
+}
+
+:root[data-tema="escuro"] .alerta-sucesso {
+    background-color: #16301A;
+    border-color: var(--cor-sucesso);
+    color: #C8F0CB;
+}
+
+:root[data-tema="escuro"] .alerta-erro {
+    background-color: #3A1613;
+    border-color: var(--cor-erro);
+    color: #FFD6D1;
+}
+
+:root[data-tema="escuro"] input,
+:root[data-tema="escuro"] select {
+    background-color: var(--cor-primaria-600);
+}
+
+/* =========================================================
+   RESET E BASE
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: var(--fonte-corpo);
+    font-size: var(--fonte-tamanho-base);
+    background-color: var(--cor-neutra-100);
+    color: var(--cor-neutra-900);
+    line-height: var(--linha-altura-base);
+}
+
+h1, h2, h3 {
+    font-family: var(--fonte-titulo);
+    color: var(--cor-acento);
+    line-height: var(--linha-altura-titulo);
+    margin-top: 0;
+}
+
+h1 { font-size: var(--fonte-tamanho-lg); }
+h2 { font-size: var(--fonte-tamanho-md); }
+h3 { font-size: var(--fonte-tamanho-md); }
+
+a {
+    color: var(--cor-primaria-600);
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    text-decoration: underline;
+}
+
+a:focus, button:focus, input:focus, select:focus {
+    outline: 3px solid var(--cor-foco);
+    outline-offset: 2px;
+}
+
+/* Skip link: some da tela até receber foco por teclado (Tab), quando
+   se torna o primeiro elemento visível e leva direto para o #app,
+   pulando a navegação repetitiva do cabeçalho. */
+.skip-link {
+    position: absolute;
+    top: -60px;
+    left: 0;
+    background-color: var(--cor-primaria-900);
+    color: var(--cor-texto-inverso);
+    padding: var(--espaco-2) var(--espaco-4);
+    z-index: 1000;
+    border-radius: 0 0 var(--raio-borda) 0;
+    transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* #app recebe tabindex="-1" só para ser um alvo de foco programático
+   válido (skip link e retorno de foco do modal); não deve ganhar o
+   anel de foco visível sozinho, já que nunca é navegado via Tab. */
+#app:focus {
+    outline: none;
+}
+
+/* =========================================================
+   SISTEMA DE GRID (12 colunas)
+   ========================================================= */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-colunas), 1fr);
+    gap: var(--grid-gap);
+}
+
+/* Mobile-first: todo item do grid ocupa as 12 colunas (empilhado) até ganhar
+   comportamento específico dentro de cada breakpoint, lá embaixo. */
+.col-span-3,
+.col-span-4,
+.col-span-6,
+.col-span-12 {
+    grid-column: span 12;
+}
+
+/* =========================================================
+   CABEÇALHO (Flexbox para alinhamento complexo)
+   ========================================================= */
+
+header {
+    background-color: var(--cor-primaria-900);
+    color: var(--cor-texto-inverso);
+    padding: var(--espaco-5) 5%;
+}
+
+.header-conteudo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--espaco-3);
+    flex-wrap: wrap;
+}
+
+.logo {
+    height: 56px;
+    width: auto;
+}
+
+.botao-alternar-tema {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--espaco-2);
+    margin-left: auto;
+    padding: var(--espaco-2) var(--espaco-3);
+    background-color: transparent;
+    color: var(--cor-texto-inverso);
+    border: 1px solid var(--cor-texto-inverso);
+    border-radius: var(--raio-borda);
+    font-size: var(--fonte-tamanho-xs);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.botao-alternar-tema:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.botao-alternar-tema[aria-pressed="true"] {
+    background-color: var(--cor-secundaria-600);
+    color: var(--cor-texto-sobre-dourado);
+    border-color: var(--cor-secundaria-600);
+}
+
+header h1 {
+    color: var(--cor-texto-inverso);
+    font-size: var(--fonte-tamanho-lg);
+    margin: 0;
+}
+
+.nav-principal {
+    position: relative;
+    margin-top: var(--espaco-3);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: var(--espaco-3);
+}
+
+/* --- Botão hambúrguer (mobile) --- */
+
+.menu-toggle-input {
+    /* Escondido visualmente, mas continua acessível/focável — é ele quem
+       guarda o estado "aberto/fechado" do menu, sem precisar de JavaScript. */
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+}
+
+.menu-toggle-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    font-size: 1.4rem;
+    color: var(--cor-texto-inverso);
+    cursor: pointer;
+    border-radius: var(--raio-borda);
+}
+
+.menu-toggle-label:hover {
+    color: var(--cor-secundaria-600);
+}
+
+.menu-toggle-input:focus-visible + .menu-toggle-label {
+    outline: 3px solid var(--cor-foco);
+    outline-offset: 2px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* --- Lista principal do menu --- */
+/* Mobile-first: fica recolhida até o checkbox #menu-toggle ser marcado */
+
+.menu-lista {
+    display: none;
+    flex-direction: column;
+    list-style: none;
+    margin: var(--espaco-3) 0 0;
+    padding: 0;
+}
+
+.menu-toggle-input:checked ~ .menu-lista {
+    display: flex;
+}
+
+.menu-lista a {
+    display: block;
+    color: var(--cor-texto-inverso);
+    font-weight: bold;
+    font-size: var(--fonte-tamanho-sm);
+    padding: var(--espaco-2) 0;
+}
+
+.menu-lista a:hover, .menu-lista a:focus {
+    color: var(--cor-secundaria-600);
+}
+
+.menu-lista > li > a.link-ativo {
+    color: var(--cor-secundaria-600);
+    text-decoration: underline;
+}
+
+/* --- Submenu (dropdown) --- */
+/* No mobile ele já nasce visível e estático, encaixado sob o item pai;
+   quem controla a exibição nesse momento é só o .menu-lista acima. */
+
+.menu-item-dropdown {
+    position: relative;
+}
+
+.submenu {
+    list-style: none;
+    margin: 0 0 var(--espaco-2);
+    padding-left: var(--espaco-4);
+}
+
+.submenu a {
+    color: var(--cor-neutra-300);
+    font-weight: normal;
+    font-size: var(--fonte-tamanho-xs);
+    padding: var(--espaco-1) 0;
+}
+
+/* =========================================================
+   CONTEÚDO PRINCIPAL
+   ========================================================= */
+
+main {
+    max-width: var(--breakpoint-lg);
+    margin: 0 auto;
+    padding: var(--espaco-6) 5% var(--espaco-7);
+}
+
+section {
+    background-color: var(--cor-neutra-000);
+    border: 1px solid var(--cor-neutra-500);
+    border-radius: var(--raio-borda);
+    padding: var(--espaco-5);
+    margin-bottom: var(--espaco-4);
+}
+
+section h2 {
+    border-bottom: 2px solid var(--cor-secundaria-600);
+    padding-bottom: var(--espaco-2);
+    display: inline-block;
+}
+
+.imagem-secao {
+    width: 100%;
+    max-height: 320px;
+    object-fit: cover;
+    border-radius: var(--raio-borda);
+    margin: var(--espaco-3) 0;
+}
+
+ul {
+    padding-left: var(--espaco-4);
+}
+
+li {
+    margin-bottom: var(--espaco-2);
+}
+
+/* =========================================================
+   FORMULÁRIO (cadastro)
+   ========================================================= */
+
+fieldset {
+    border: 1px solid var(--cor-neutra-500);
+    border-radius: var(--raio-borda);
+    padding: var(--espaco-4);
+    margin-bottom: var(--espaco-4);
+}
+
+legend {
+    font-family: var(--fonte-corpo);
+    font-weight: bold;
+    color: var(--cor-acento);
+    padding: 0 var(--espaco-2);
+}
+
+label {
+    display: block;
+    margin-top: var(--espaco-3);
+    margin-bottom: var(--espaco-1);
+    color: var(--cor-neutra-600);
+    font-size: var(--fonte-tamanho-sm);
+}
+
+/* Texto de apoio ligado ao campo via aria-describedby — visível para
+   todo mundo (não é sr-only), já que também ajuda quem enxerga a
+   máscara sendo preenchida mas não sabe o padrão esperado de antemão. */
+.dica-campo {
+    display: block;
+    margin-top: var(--espaco-1);
+    color: var(--cor-neutra-600);
+    font-size: var(--fonte-tamanho-xs);
+}
+
+input, select {
+    width: 100%;
+    padding: var(--espaco-2) var(--espaco-3);
+    border: 1px solid var(--cor-neutra-500);
+    border-radius: var(--raio-borda);
+    font-size: var(--fonte-tamanho-base);
+    font-family: var(--fonte-corpo);
+    background-color: var(--cor-neutra-100);
+    color: var(--cor-neutra-900);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+/* Validação visual: só entra em ação depois que o campo já recebeu
+   conteúdo (:not(:placeholder-shown)), para não pintar o formulário
+   inteiro de vermelho antes do usuário sequer começar a digitar. */
+
+input:invalid:not(:placeholder-shown) {
+    border-color: var(--cor-erro);
+    background-color: #FBEAEA;
+    box-shadow: 0 0 0 3px rgba(179, 38, 30, 0.12);
+}
+
+input:valid:not(:placeholder-shown) {
+    border-color: var(--cor-sucesso);
+    background-color: #EAF4EA;
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.12);
+}
+
+.botoes-form {
+    display: flex;
+    gap: var(--espaco-3);
+    margin-top: var(--espaco-4);
+    flex-wrap: wrap;
+}
+
+button {
+    padding: var(--espaco-3) var(--espaco-5);
+    border: none;
+    border-radius: var(--raio-borda);
+    font-size: var(--fonte-tamanho-base);
+    font-family: var(--fonte-corpo);
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+button[type="submit"] {
+    background-color: var(--cor-primaria-900);
+    color: var(--cor-texto-inverso);
+}
+
+button[type="submit"]:hover {
+    background-color: var(--cor-primaria-600);
+    box-shadow: 0 4px 10px rgba(30, 61, 52, 0.25);
+}
+
+button[type="submit"]:active {
+    background-color: var(--cor-primaria-900);
+    transform: translateY(1px) scale(0.98);
+    box-shadow: none;
+}
+
+button[type="submit"]:disabled {
+    background-color: var(--cor-neutra-300);
+    color: var(--cor-neutra-600);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+button[type="reset"] {
+    background-color: transparent;
+    color: var(--cor-neutra-900);
+    border: 1px solid var(--cor-neutra-500);
+}
+
+button[type="reset"]:hover {
+    background-color: var(--cor-neutra-100);
+    border-color: var(--cor-neutra-600);
+}
+
+button[type="reset"]:active {
+    transform: translateY(1px) scale(0.98);
+    background-color: var(--cor-neutra-300);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+button:disabled:hover {
+    box-shadow: none;
+}
+
+/* =========================================================
+   COMPONENTES DE FEEDBACK — badges, alertas, toast e modal
+   Padronizados sobre a mesma paleta de variáveis do Design System,
+   prontos para serem acionados dinamicamente pelo back-end (ex.: uma
+   classe .visivel adicionada via JS após a resposta do servidor).
+   ========================================================= */
+
+/* --- Badges: categorização semântica curta --- */
+
+.badge {
+    display: inline-block;
+    padding: var(--espaco-1) var(--espaco-3);
+    border-radius: 999px;
+    font-family: var(--fonte-corpo);
+    font-size: var(--fonte-tamanho-xs);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.badge-primaria    { background-color: var(--cor-primaria-100); color: var(--cor-acento); }
+.badge-secundaria  { background-color: var(--cor-secundaria-300); color: var(--cor-texto-sobre-dourado); }
+.badge-neutra      { background-color: var(--cor-neutra-300); color: var(--cor-neutra-900); }
+
+/* --- Alertas: mensagens contextuais de sucesso/erro/informação --- */
+
+.alerta {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--espaco-3);
+    padding: var(--espaco-3) var(--espaco-4);
+    border-radius: var(--raio-borda);
+    border-left: 4px solid;
+    font-size: var(--fonte-tamanho-sm);
+    margin-bottom: var(--espaco-4);
+}
+
+.alerta-sucesso {
+    background-color: #EAF4EA;
+    border-color: var(--cor-sucesso);
+    color: #1E4620;
+}
+
+.alerta-erro {
+    background-color: #FBEAEA;
+    border-color: var(--cor-erro);
+    color: #7A1D17;
+}
+
+.alerta-info {
+    background-color: var(--cor-primaria-100);
+    border-color: var(--cor-primaria-600);
+    color: var(--cor-acento);
+}
+
+.alerta strong {
+    display: block;
+    margin-bottom: var(--espaco-1);
+}
+
+.alerta[hidden] {
+    display: none;
+}
+
+/* --- Toast: notificação não obstrutiva --- */
+
+.toast {
+    display: flex;
+    align-items: center;
+    gap: var(--espaco-3);
+    max-width: 360px;
+    padding: var(--espaco-3) var(--espaco-4);
+    background-color: var(--cor-primaria-900);
+    color: var(--cor-texto-inverso);
+    border-radius: var(--raio-borda);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    font-size: var(--fonte-tamanho-sm);
+}
+
+.toast-icone {
+    font-size: 1.2rem;
+}
+
+.toast-fechar {
+    margin-left: auto;
+    cursor: pointer;
+    color: var(--cor-texto-inverso);
+}
+
+.toast-fechar:hover {
+    color: var(--cor-secundaria-600);
+}
+
+.toast-fechar:focus-visible {
+    outline: 3px solid var(--cor-foco);
+    outline-offset: 2px;
+}
+
+.toast[hidden] {
+    display: none;
+}
+
+/* Versão real (não a de vitrine): fixa no canto da tela, com uma
+   pequena animação de entrada. */
+.toast-flutuante {
+    position: fixed;
+    bottom: var(--espaco-4);
+    right: var(--espaco-4);
+    z-index: 200;
+    animation: toast-entrada 0.25s ease;
+}
+
+@keyframes toast-entrada {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Modal: informação em destaque, aberto sob demanda --- */
+/* Mesmo "checkbox hack" já usado no menu hambúrguer: um checkbox
+   invisível guarda o estado aberto/fechado, sem depender de JS. */
+
+.modal-toggle-input {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+}
+
+.botao-abrir-modal {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--espaco-2);
+    padding: var(--espaco-2) var(--espaco-4);
+    background-color: var(--cor-primaria-100);
+    color: var(--cor-acento);
+    border-radius: var(--raio-borda);
+    font-size: var(--fonte-tamanho-sm);
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.botao-abrir-modal:hover {
+    background-color: var(--cor-secundaria-300);
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(36, 41, 31, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--espaco-4);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    z-index: 100;
+}
+
+.modal-toggle-input:checked ~ .modal-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    background-color: var(--cor-neutra-000);
+    border-radius: var(--raio-borda);
+    padding: var(--espaco-5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.modal h3 {
+    margin-top: 0;
+}
+
+/* Recebe foco programático ao abrir o modal (ver acessibilidade.js);
+   precisa de indicação visual mesmo sem fazer parte da navegação
+   normal por Tab. */
+.modal h3:focus {
+    outline: 3px solid var(--cor-foco);
+    outline-offset: 4px;
+}
+
+.modal-fechar {
+    position: absolute;
+    top: var(--espaco-3);
+    right: var(--espaco-3);
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--cor-neutra-600);
+}
+
+.modal-fechar:hover {
+    color: var(--cor-erro);
+}
+
+.botao-fechar-modal {
+    display: inline-block;
+    margin-top: var(--espaco-4);
+    padding: var(--espaco-2) var(--espaco-5);
+    background-color: var(--cor-primaria-900);
+    color: var(--cor-texto-inverso);
+    border-radius: var(--raio-borda);
+    font-size: var(--fonte-tamanho-sm);
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.botao-fechar-modal:hover {
+    background-color: var(--cor-primaria-600);
+}
+
+/* --- Vitrine de componentes (bloco de demonstração) --- */
+
+.vitrine-componentes {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco-4);
+}
+
+.vitrine-linha {
+    display: flex;
+    gap: var(--espaco-2);
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.lista-voluntarios {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco-2);
+}
+
+.lista-voluntarios li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--espaco-2);
+    padding: var(--espaco-2) var(--espaco-3);
+    background-color: var(--cor-neutra-100);
+    border-radius: var(--raio-borda);
+    margin-bottom: 0;
+}
+
+.texto-auxiliar {
+    color: var(--cor-neutra-600);
+    font-size: var(--fonte-tamanho-sm);
+    background-color: transparent !important;
+    padding: 0 !important;
+}
+
+/* =========================================================
+   RODAPÉ
+   ========================================================= */
+
+footer {
+    background-color: var(--cor-primaria-900);
+    color: var(--cor-texto-inverso);
+    text-align: center;
+    padding: var(--espaco-4) 5%;
+}
+
+footer p {
+    margin: var(--espaco-1) 0;
+    font-size: var(--fonte-tamanho-sm);
+}
+
+/* =========================================================
+   RESPONSIVO — 5 breakpoints estritos (mobile-first)
+   Base (sem media query) = celular pequeno, < 480px.
+   Cada @media abaixo assume o controle a partir do seu min-width,
+   sobrepondo a base conforme a tela cresce até o desktop panorâmico.
+   ========================================================= */
+
+/* 1) --breakpoint-xs: 480px — celular grande (ainda em coluna única) */
+@media (min-width: 480px) {
+    main {
+        padding: var(--espaco-5) 6% var(--espaco-6);
+    }
+
+    section {
+        padding: var(--espaco-5);
+    }
+}
+
+/* 2) --breakpoint-sm: 600px — tablet retrato: cabeçalho em linha,
+      cartões do grid passam a ocupar 2 colunas (span 6), e o menu de
+      navegação deixa de ser hambúrguer para virar uma barra horizontal
+      com dropdown por hover/foco */
+@media (min-width: 600px) {
+    .header-conteudo {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    h1 { font-size: var(--fonte-tamanho-xl); }
+    h2 { font-size: var(--fonte-tamanho-lg); }
+
+    .col-span-4,
+    .col-span-6 {
+        grid-column: span 6;
+    }
+
+    /* Hambúrguer só existe no mobile: some a partir daqui */
+    .menu-toggle-label {
+        display: none;
+    }
+
+    /* O menu deixa de depender do checkbox e fica sempre visível, em linha */
+    .nav-principal {
+        border-top: none;
+        padding-top: 0;
+        margin-top: var(--espaco-3);
+    }
+
+    .menu-lista {
+        display: flex;
+        flex-direction: row;
+        gap: var(--espaco-4);
+        margin: 0;
+    }
+
+    /* Submenu volta a ser um dropdown posicionado, escondido até o
+       hover ou foco no item pai (mouse ou navegação por teclado/Tab) */
+    .submenu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 200px;
+        margin: 0;
+        padding: var(--espaco-2);
+        background-color: var(--cor-neutra-000);
+        border: 1px solid var(--cor-neutra-500);
+        border-radius: var(--raio-borda);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-6px);
+        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+        z-index: 10;
+    }
+
+    .submenu a {
+        color: var(--cor-neutra-900);
+        font-size: var(--fonte-tamanho-sm);
+        padding: var(--espaco-2);
+        border-radius: var(--raio-borda);
+    }
+
+    .submenu a:hover, .submenu a:focus {
+        color: var(--cor-primaria-600);
+        background-color: var(--cor-neutra-100);
+    }
+
+    .menu-item-dropdown:hover .submenu,
+    .menu-item-dropdown:focus-within .submenu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+}
+
+/* 3) --breakpoint-md: 900px — tablet paisagem/notebook: grid completa
+      as 12 colunas (col-span-4 = 3 cartões por linha) */
+@media (min-width: 900px) {
+    main {
+        padding: var(--espaco-6) 5% var(--espaco-7);
+    }
+
+    .col-span-3 { grid-column: span 3; }
+    .col-span-4 { grid-column: span 4; }
+}
+
+/* 4) --breakpoint-lg: 1200px — desktop: largura de conteúdo trava em
+      1200px e o espaçamento entre colunas do grid aumenta */
+@media (min-width: 1200px) {
+    main {
+        max-width: var(--breakpoint-lg);
+    }
+
+    .grid {
+        gap: var(--espaco-5);
+    }
+}
+
+/* 5) --breakpoint-xl: 1440px — desktop panorâmico: mais respiro nas
+      laterais e no grid, para não esticar o conteúdo em telas largas */
+@media (min-width: 1440px) {
+    main {
+        max-width: 1320px;
+    }
+
+    .grid {
+        gap: var(--espaco-6);
+    }
+}

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONG Mãos Solidárias</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <a href="#app" class="skip-link">Pular para o conteúdo principal</a>
+
+    <header>
+
+        <div class="header-conteudo">
+            <img src="../imagens/logo.png" alt="Logo da ONG Mãos Solidárias" class="logo">
+            <h1>ONG Mãos Solidárias</h1>
+            <button type="button" id="alternar-tema" class="botao-alternar-tema" aria-pressed="false">
+                <span aria-hidden="true">🌓</span>
+                <span class="texto-alternar-tema">Alto contraste</span>
+            </button>
+        </div>
+
+        <nav class="nav-principal" aria-label="Navegação principal">
+
+            <input type="checkbox" id="menu-toggle" class="menu-toggle-input">
+            <label for="menu-toggle" class="menu-toggle-label"
+                aria-controls="menu-principal-lista" aria-expanded="false">
+                <span aria-hidden="true">☰</span>
+                <span class="sr-only">Abrir menu</span>
+            </label>
+
+            <ul class="menu-lista" id="menu-principal-lista">
+
+                <li class="menu-item-dropdown">
+                    <a href="#/inicio" data-rota="inicio">🏠 Página Inicial</a>
+                    <ul class="submenu">
+                        <li><a href="#/inicio/quem-somos">Quem Somos</a></li>
+                        <li><a href="#/inicio/contato">Contato</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-item-dropdown">
+                    <a href="#/projetos" data-rota="projetos">📚 Projetos Sociais</a>
+                    <ul class="submenu">
+                        <li><a href="#/projetos/inclusao-social">Inclusão Social</a></li>
+                        <li><a href="#/projetos/voluntariado">Voluntariado</a></li>
+                        <li><a href="#/projetos/doacoes">Doações</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#/cadastro" data-rota="cadastro">🤝 Cadastre-se</a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+    <!-- A SPA injeta o conteúdo de cada rota aqui dentro -->
+    <main id="app" tabindex="-1"></main>
+
+    <footer>
+        <p>© 2026 ONG Mãos Solidárias</p>
+        <p>Conectando pessoas e transformando vidas.</p>
+    </footer>
+
+    <!-- =====================================================
+         TEMPLATES — marcação de cada "página", clonada pelo
+         roteador em js/router.js e injetada em #app
+         ===================================================== -->
+
+    <template id="template-inicio">
+
+        <section class="hero" id="quem-somos">
+
+            <h2>Quem Somos</h2>
+
+            <picture>
+                <source srcset="../imagens/ong.webp" type="image/webp">
+                <img src="../imagens/ong.jpg"
+                    alt="Voluntários da ONG Mãos Solidárias durante uma ação social"
+                    class="imagem-secao" loading="eager">
+            </picture>
+
+            <p>
+                A ONG Mãos Solidárias é uma organização sem fins lucrativos
+                dedicada ao desenvolvimento de projetos voltados para inclusão
+                social, educação e assistência às comunidades em situação de
+                vulnerabilidade.
+            </p>
+
+            <p>
+                Nosso objetivo é promover oportunidades, fortalecer laços
+                comunitários e transformar vidas por meio da solidariedade.
+            </p>
+
+        </section>
+
+        <section id="contato">
+
+            <h2>Contato</h2>
+
+            <p>
+                Caso queira colaborar ou conhecer melhor nossos projetos,
+                entre em contato conosco.
+            </p>
+
+            <p><strong>E-mail:</strong> contato@maossolidarias.org.br</p>
+            <p><strong>Telefone:</strong> (11) 99999-9999</p>
+            <p><strong>Endereço:</strong> Rua da Solidariedade, 100 - São Paulo/SP</p>
+
+        </section>
+
+        <section id="componentes">
+
+            <h2>Componentes de Feedback da Plataforma</h2>
+
+            <p>
+                Conjunto padronizado de sinalizações visuais para uso em
+                todas as páginas do projeto. Esta é uma vitrine estática de
+                referência visual — a versão funcional, ligada ao
+                preenchimento e envio, está na
+                <a href="#/cadastro">página de Cadastro</a>.
+            </p>
+
+            <div class="vitrine-componentes">
+
+                <div>
+                    <h3>Badges — categorização de projetos</h3>
+                    <div class="vitrine-linha">
+                        <span class="badge badge-primaria">Educação</span>
+                        <span class="badge badge-secundaria">Voluntariado</span>
+                        <span class="badge badge-neutra">Doação</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h3>Alertas contextuais</h3>
+
+                    <div class="alerta alerta-sucesso">
+                        <span aria-hidden="true">✅</span>
+                        <div>
+                            <strong>Cadastro enviado com sucesso!</strong>
+                            Em breve nossa equipe entrará em contato.
+                        </div>
+                    </div>
+
+                    <div class="alerta alerta-erro">
+                        <span aria-hidden="true">⚠️</span>
+                        <div>
+                            <strong>Não foi possível enviar o formulário.</strong>
+                            Confira os campos destacados e tente novamente.
+                        </div>
+                    </div>
+
+                    <div class="alerta alerta-info">
+                        <span aria-hidden="true">ℹ️</span>
+                        <div>
+                            <strong>Você sabia?</strong>
+                            Todos os campos com * são obrigatórios no cadastro.
+                        </div>
+                    </div>
+
+                </div>
+
+                <div>
+                    <h3>Toast — notificação não obstrutiva</h3>
+                    <div class="toast">
+                        <span class="toast-icone" aria-hidden="true">✅</span>
+                        <span>Inscrição confirmada!</span>
+                        <span class="toast-fechar" aria-hidden="true">×</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h3>Modal informativo</h3>
+
+                    <input type="checkbox" id="modal-toggle" class="modal-toggle-input">
+                    <label for="modal-toggle" class="botao-abrir-modal">
+                        ℹ️ Como funciona o cadastro?
+                    </label>
+
+                    <div class="modal-overlay">
+                        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+                            <label for="modal-toggle" class="modal-fechar" aria-label="Fechar">×</label>
+                            <h3 id="modal-titulo" tabindex="-1">Como funciona o cadastro?</h3>
+                            <p>
+                                Após enviar o formulário na página de Cadastro,
+                                nossa equipe analisa suas informações e entra em
+                                contato em até 3 dias úteis para confirmar sua
+                                participação como voluntário.
+                            </p>
+                            <label for="modal-toggle" class="botao-fechar-modal">Entendi</label>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </template>
+
+    <template id="template-projetos">
+
+        <div class="grid">
+
+            <section class="col-span-4" id="inclusao-social">
+                <h2>Inclusão Social e Digital</h2>
+                <span class="badge badge-primaria">Educação</span>
+                <picture>
+                    <source srcset="../imagens/inclusao-social.webp" type="image/webp">
+                    <img src="../imagens/inclusao-social.jpg"
+                        alt="Oficina de informática promovida pelo projeto de inclusão social"
+                        class="imagem-secao" loading="lazy">
+                </picture>
+                <p>
+                    Este projeto oferece oficinas de informática,
+                    capacitação profissional e orientação tecnológica
+                    para jovens e adultos de comunidades vulneráveis.
+                </p>
+            </section>
+
+            <section class="col-span-4" id="voluntariado">
+                <h2>Programa de Voluntariado</h2>
+                <span class="badge badge-secundaria">Voluntariado</span>
+                <img src="../imagens/voluntariado.jpg"
+                    alt="Voluntários participando de atividades comunitárias"
+                    class="imagem-secao">
+                <p>
+                    O programa de voluntariado reúne pessoas dispostas
+                    a compartilhar conhecimento, tempo e dedicação em
+                    atividades educacionais e comunitárias.
+                </p>
+            </section>
+
+            <section class="col-span-4" id="doacoes">
+                <h2>Campanhas de Doação</h2>
+                <span class="badge badge-neutra">Doação</span>
+                <img src="../imagens/doacao.jpg"
+                    alt="Itens arrecadados em campanha de doação"
+                    class="imagem-secao">
+                <p>
+                    As doações são fundamentais para manter nossos projetos.
+                    Com elas conseguimos atender famílias e desenvolver
+                    novas ações sociais.
+                </p>
+                <ul>
+                    <li>Alimentos</li>
+                    <li>Roupas</li>
+                    <li>Brinquedos</li>
+                    <li>Material Escolar</li>
+                    <li>Doações Financeiras</li>
+                </ul>
+            </section>
+
+        </div>
+
+    </template>
+
+    <template id="template-cadastro">
+
+        <section>
+            <h2>Faça Parte da Nossa Missão</h2>
+            <p>
+                Seu apoio pode transformar vidas. Cadastre-se para atuar
+                como voluntário e participar das ações desenvolvidas pela
+                ONG Mãos Solidárias.
+            </p>
+        </section>
+
+        <div id="alerta-info" class="alerta alerta-info" role="status" aria-live="polite" aria-atomic="true" hidden>
+            <span aria-hidden="true">ℹ️</span>
+            <div>
+                <strong>Você sabia?</strong>
+                Todos os campos com * são obrigatórios no cadastro.
+            </div>
+        </div>
+
+        <div id="alerta-erro" class="alerta alerta-erro" role="alert" aria-live="assertive" aria-atomic="true" hidden>
+            <span aria-hidden="true">⚠️</span>
+            <div>
+                <strong>Não foi possível enviar o formulário.</strong>
+                Confira os campos destacados e tente novamente.
+            </div>
+        </div>
+
+        <div id="alerta-sucesso" class="alerta alerta-sucesso" role="status" aria-live="polite" aria-atomic="true" hidden>
+            <span aria-hidden="true">✅</span>
+            <div>
+                <strong>Cadastro enviado com sucesso!</strong>
+                Em breve nossa equipe entrará em contato.
+            </div>
+        </div>
+
+        <form id="form-cadastro" novalidate>
+
+            <fieldset>
+                <legend>Dados Pessoais</legend>
+
+                <label for="nome">Nome Completo:</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="cpf">CPF:</label>
+                <input type="text" id="cpf" name="cpf" required
+                    pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="000.000.000-00" maxlength="14"
+                    aria-describedby="dica-cpf">
+                <span id="dica-cpf" class="dica-campo">Digite só os números, a formatação é aplicada automaticamente.</span>
+
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" name="telefone" required
+                    pattern="\(\d{2}\)\s\d{5}-\d{4}" placeholder="(11) 99999-9999" maxlength="15"
+                    aria-describedby="dica-telefone">
+                <span id="dica-telefone" class="dica-campo">Digite DDD + número, só dígitos — o formato é aplicado automaticamente.</span>
+
+                <label for="nascimento">Data de Nascimento:</label>
+                <input type="date" id="nascimento" name="nascimento" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>Endereço</legend>
+
+                <label for="cep">CEP:</label>
+                <input type="text" id="cep" name="cep" required
+                    pattern="\d{5}-\d{3}" placeholder="00000-000" maxlength="9"
+                    aria-describedby="dica-cep">
+                <span id="dica-cep" class="dica-campo">Digite só os números, o traço é inserido automaticamente.</span>
+
+                <label for="rua">Rua:</label>
+                <input type="text" id="rua" name="rua" required>
+
+                <label for="numero">Número:</label>
+                <input type="number" id="numero" name="numero" required>
+
+                <label for="bairro">Bairro:</label>
+                <input type="text" id="bairro" name="bairro" required>
+
+                <label for="cidade">Cidade:</label>
+                <input type="text" id="cidade" name="cidade" required>
+
+                <label for="estado">Estado:</label>
+                <select id="estado" name="estado" required>
+                    <option value="">Selecione</option>
+                    <option>São Paulo</option>
+                    <option>Rio de Janeiro</option>
+                    <option>Minas Gerais</option>
+                    <option>Paraná</option>
+                    <option>Santa Catarina</option>
+                </select>
+            </fieldset>
+
+            <div class="botoes-form">
+                <button type="submit">✅ Enviar Cadastro</button>
+                <button type="reset">🗑️ Limpar Dados</button>
+            </div>
+
+        </form>
+
+        <section>
+            <h3>Voluntários cadastrados neste dispositivo</h3>
+            <ul id="lista-voluntarios" class="lista-voluntarios"></ul>
+        </section>
+
+        <div id="toast-sucesso" class="toast toast-flutuante" role="status" aria-live="polite" aria-atomic="true" hidden>
+            <span class="toast-icone" aria-hidden="true">✅</span>
+            <span>Inscrição confirmada!</span>
+            <span class="toast-fechar" id="toast-fechar-botao" role="button" tabindex="0"
+                aria-label="Fechar notificação">×</span>
+        </div>
+
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/imask@7.6.1/dist/imask.min.js"></script>
+    <script src="../js/templates.js"></script>
+    <script src="../js/componentes.js"></script>
+    <script src="../js/formulario.js"></script>
+    <script src="../js/acessibilidade.js"></script>
+    <script src="../js/tema.js"></script>
+    <script src="../js/router.js"></script>
+    <script src="../js/app.js"></script>
+
+</body>
+
+</html>
